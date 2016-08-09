@@ -6,7 +6,7 @@ function finish {
 airmon-ng stop $MONINT &> /dev/null
 airmon-ng stop $STARTINT &> /dev/null
 rm -rf /tmp/wash.tmp
-printf "\nEXITING!"
+printf "\nEXITING!\n"
 exit 1
 }
 
@@ -34,7 +34,7 @@ fi
 tput setaf 2;echo "Wash, Airmon-NG, and Reaver are present...";tput sgr0
 echo "What interface do you want to use? (NOT IN MONITOR MODE)"
 #THIS ASSUMES THAT MIGHT BE 1 MONITOR INTERFACE, AND IT THEN TRIES TO STOP IT
-#IF THERE ARE TWO MONITOR INTERFACES THEN THIS WILL BREAK
+#IF THERE ARE TWO MONITOR INTERFACES THEN THIS WILL BREAK THINGS!
 ifListWithMon="$(ls /sys/class/net | grep -E "wl|wlan" |grep -E "mon" | tr "\n" "\ " ; printf "\n")"
 airmon-ng stop $ifListWithMon &> /dev/null
 ifListNoMon="$(ls /sys/class/net | grep -E "wl|wlan" |grep -E "mon" -v| tr "\n" "\ " ; printf "\n")"
